@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+        Remove this if you use the .htaccess -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Fico Interview Notes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1;">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="./static/style1.css" rel="stylesheet" type="text/css">
+    <link href="./static/style2.css" rel="stylesheet" type="text/css">
+    <style type="text/css" media="screen">
+
+        body, h1, h2, h3, h4, h5 {
+            font-family:'Open Sans', sans-serif;
+        }
+        .name {
+            font-family:'Josefin Sans', sans-serif;
+            font-size:3em;
+            line-height:1.5em;
+        }
+        .title {
+            margin-top:0;
+            /*color:#456A8F;*/
+        }
+        .header-row, .date, .jobdetails {
+            color:#666;
+        }
+        .cattitle, .navbar-brand {
+            /*color:#456A8F !important;*/
+        }
+        @media (max-width: 500px) {
+            .name {
+                font-size: 2em;
+            }
+            .cattitle {
+                font-size: 1.6em;
+            }
+        }
+        .dl-horizontal dt {
+            text-align: left;
+            width: 100px;
+        }
+        .dl-horizontal dd {
+            margin-left: 110px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+<div class="container">
+
+    <h1 class="page-header">
+        <strong> My Notes on "Credit Risk Scorecards" by  NAEEM SIDDIQI </strong>
+    </h1>
+
+
+    <h3 class="page-header"> People's Role / Responsibilities</h3>
+
+    <h4 class="bs-example">Credit Risk Manager</h4>
+    <ol>
+        <li>Data elements inputs</li>
+        <li>Historical changes in Market/Portfolio</li>
+    </ol><br>
+
+    <h4 class="bs-example">Product Manager</h4>
+    <ol>
+        <li>Company's typical client base / target markets</li>
+        <li>Future product development / marketing direction</li>
+        <li>can assist in segmentation</li>
+        <li>impact of strategies</li>
+    </ol><br>
+
+    <p><mark>Segmentation assess risk for increasingly specific population
+        <icon class="glyphicon glyphicon-arrow-right"></icon>
+        Involvement of marketing can help </mark>
+    </p><br>
+
+    <h4>Adjudication / Collection & Fraud</h4>
+    <ol>
+        <li>can help with experience based insights into factors that are predictive of negative behavior</li>
+        <li>Question: what characteristics do you see in bad accounts? Have they changed over last few years?</li>
+    </ol>
+
+
+
+    <br><h3 class="page-header"> Score Card Development process - Overview</h3>
+
+    <h4 class="bs-example"><strong></b>Stage 1: Planning</strong></h4>
+    <ol>
+        <li>Business Plan</li>
+        <li>Org Objective / Score card Role</li>
+        <li>Project Plan</li>
+        <li> Project team and Responsibilities</li>
+    </ol><br>
+
+
+    <h4 class="bs-example"><strong></b>Stage 2: Data Review & Project parameters </strong></h4>
+    <ol>
+        <li> Data Availability and Quality </li>
+        <li> Data gathering </li>
+        <li> Sample and Performance window </li>
+        <li> Target Definition </li>
+        <li> Exclusions </li>
+        <li> Segmentation </li>
+        <li> Methodology </li>
+        <li> Implementation Plan </li>
+    </ol><br>
+
+
+    <h4 class="bs-example"><strong></b>Stage 3: Dev Data Creation </strong></h4>
+    <ol>
+        <li> Dev sample specifications </li>
+        <li> Sampling </li>
+        <li> Dev data collection / Construction </li>
+        <li> <code>Weights / Bias ??</code> </li>
+    </ol><br>
+
+
+    <h4 class="bs-example"><strong></b>Stage 4: Scorecard Development </strong></h4>
+    <ol>
+        <li> Exploring Data </li>
+        <li> Identifying Missing values and Outliers </li>
+        <li> Correlation </li>
+        <li> Initial Characteristic Analysis - Fineclass, IV etc. </li>
+        <li> Preliminary Scorecard </li>
+        <li> Reject Inference </li>
+        <li> Final Scorecard </li>
+        <li> Scaling </li>
+        <li>Validation</li>
+    </ol><br>
+
+
+    <h4 class="bs-example"><strong></b>Stage 5: Reports </strong></h4>
+    <ol>
+        <li> Gains Tables </li>
+        <li> Characteristics Reports </li>
+    </ol><br>
+
+
+    <h4 class="bs-example"><strong></b>Stage 6: Implementation </strong></h4>
+    <ol>
+        <li> Scoring Strategy </li>
+        <li> Setting Cutoffs </li>
+        <li> Policy Rules / Adverse Action </li>
+        <li> Overrides </li>
+    </ol><br>
+
+
+    <h4 class="bs-example"><strong></b>Stage 7: Post Implementation </strong></h4>
+    <ol>
+        <li> Scorecard performance reports </li>
+        <li> Portfolio performance reports </li>
+    </ol>
+
+
+    <br><h3 class="page-header"> Stage 1 - Details</h3>
+
+    <h4 class="bs-example"><strong> Stage 1 > Planing > Business Plan </strong></h4>
+    <ol>
+        <li> Increase Revenue  (Low Cutoff) <mark> vs </mark> Reduce Losses (High Cutoff) </li>
+        <li> Reduction in Bad Debt / Bankruptcy / Claims / Fraud </li>
+        <li> Increase in Approval Rates or Market Share </li>
+        <li> Increase Profitability </li>
+        <li><code> Increase Operational Efficiency ?? </code></li>
+        <li> Better predictive power </li>
+    </ol><br>
+
+
+    <h4 class="bs-example"><strong> Stage 1 > Planing > Scorecard Role </strong></h4>
+    <ol>
+        <li> Sole Decision maker <mark> vs </mark> support tool </li>
+        <li> All possible information / variables in sole arbiter <mark> vs </mark> only complementary variables in support tool </li>
+    </ol><br>
+
+
+    <p ><mark> Sole Arbiter example
+        <icon class="glyphicon glyphicon-arrow-right"></icon>
+        Top 3% - selected applicants routed to a credit analyst </mark>
+    </p>
+
+    <p><mark> Expert Systems / Experience based models
+        <icon class="glyphicon glyphicon-arrow-right"></icon>
+        when Low Volumes, Cost / profit dynamics don't work for a full fledged score card development </mark>
+    </p>
+
+
+    <br><h3 class="page-header"> Stage 2 - Details</h3>
+
+
+    <h4 class="bs-example"><strong> Stage 2 > Data Review > Data Gathering > Variables</strong></h4>
+    <ol>
+        <li> Account id </li>
+        <li> Date Opened / MOB </li>
+        <li> claim history over life of account </li>
+        <li> Accept / Reject Indicator </li>
+        <li> Product / Channel / Segment </li>
+        <li> Current account status - Inactive / Closed / Lost / Stolen / Fraud etc. </li>
+        <li> Demographics - Age, Geography, Existing Relationship with Bank, Marketing Campaigns (Customer Acq) </li>
+    </ol><br>
+
+
+    <h4 class="bs-example"><strong> Stage 2 > Data Review > Exclusions </strong></h4>
+    <ol>
+        <li> Accounts that would be scored - should be used for development </li>
+        <li> Accounts that would be chucked out using any non-score criterion should not be part of dev sample. For example
+            <ul>
+                <li> VIP </li>
+                <li> Staff </li>
+                <li> Out of country </li>
+                <li> Pre approved </li>
+                <li> lost / stolen cards </li>
+                <li> deceased </li>
+                <li> under age </li>
+                <li><code> voluntary cancellation within performance window ?? </code></li>
+                <li> Non operating Market / Area </li>
+            </ul>
+        </li>
+    </ol><br>
+
+
+    <h4 class="bs-example"><strong> Stage 2 > Data Review > Performance Window Selection </strong></h4>
+    <ol>
+        <li> Plot Bad Rate <mark> vs </mark> Months on Book where curve gets stable </li>
+        <li> Reasons:
+            <ul>
+                <li> To avoid understating the bad rate </li>
+                <li> Give enough time for cohort to mature </li>
+                <li> Correctly label all the bads </li>
+            </ul>
+        </li>
+        <li> Typical Performance window by product :
+            <ul>
+                <li> Credit Cards Acquisition - 18 to 24 months </li>
+                <li> Mortgage - 3 to 5 years </li>
+                <li> Behavior score - 6 or 12 months </li>
+                <li> Collection models - 2 weeks or 1 month (Performance window as per Basel II guidelines) </li>
+            </ul>
+        </li>
+    </ol><br>
+
+    <p>
+        <mark>
+            Credit card is higher risk product than Mortgage hence shorter performance window.
+        </mark>
+    </p><br>
+
+    <p>
+        <mark>
+            Example: Customer in distress would default first on credit card than Mortgage
+        </mark>
+    </p><br>
+
+    <p>
+        <mark>
+            30 days delinquent will mature faster than 90 days delinquent.
+        </mark>
+    </p><br>
+
+    <p>
+        <mark>
+            "Ever Bad" definition should be tried wherever possible.
+        </mark>
+    </p><br>
+
+
+
+    <h4 class="bs-example"><strong> Stage 2 > Data Review > Sample Window > Seasonality </strong></h4>
+    <ol>
+        <li> Investigate the reason of abnormality  / Bias - e.g. Marketing Campaign</li>
+        <li> Exclude abnormal population - if future target population do not contain this segment </li>
+        <li> Try multiple cohorts - Monthly / Quarterly </li>
+        <li> Apply weights to un-bias </li>
+        <li> Exclude abnormal accounts - after some analysis / checks on discarded accounts </li>
+    </ol><br>
+
+
+    <h4 class="bs-example"><strong> Stage 2 > Data Review > Target Definition </strong></h4>
+    <ol>
+        <li> Org Objective
+            <ul>
+                <li> Profits - Delinquency point for non profitability </li>
+                <li> Detection - Ever Bad </li>
+                <li> Claims - Claims over $1,000 </li>
+                <li> Collection - Less than 50% recovered within 3 months </li>
+            </ul>
+        </li><br>
+
+        <li> Definition Strength
+            <ul>
+                <li> Tighter / Stringent Definition - Write-off / 120 DPD
+                    <ul>
+                        <li> Low Sample Size </li>
+                        <li> Extreme / Higher Differentiation </li>
+                    </ul>
+                </li>
+
+                <li> Looser Definition - 30 DPD
+                    <ul>
+                        <li> High Sample Size </li>
+                        <li> Low Differentiation </li>
+                        <li><mark> Weak Scorecard </mark></li>
+                    </ul>
+                </li>
+            </ul>
+        </li><br>
+
+        <li> Interpretable & Trackable - Bad Example: 3x30 DPD or 2x60 DPD or 1x90 DPD or worse </li>
+        <li> Depending upon accounting policies of write off </li>
+        <li> Based on Existing score cards across segments </li>
+        <li> Depending on regulatory environment </li>
+        <li> Depending on Data availability
+            <ul>
+                <li> 12 months only data - 30 DPD </li>
+                <li> Monthly payment data not available - "Current status" as compared to "EVER BAD" </li>
+            </ul>
+        </li>
+    </ol><br>
+
+    <p>
+        <mark>
+            BASEL II Guidelines <icon class="glyphicon glyphicon-arrow-right"></icon> 90 DPD
+        </mark>
+    </p><br>
+
+
+
+    <h4 class="bs-example"><strong> Stage 2 > Data Review > Target Definition > Confirming BAD Definition </strong></h4>
+    <ol>
+        <li> Consensus Method </li>
+        <li>
+            Roll Rate Analysis - worst delinquency in "previous x months" compared to worst delinquency in "next x months"
+            and then calculate % of accounts that maintain / roll forward / backward.
+        </li>
+        <li> Current <mark> vs </mark> Worst delinquency comparison </li>
+    </ol><br>
+
+    <p>
+        <mark>
+            BASEL II defines <strong> Default </strong> as any point at which the bank considers the obligor unlikely
+            to repay the debt in full.
+        </mark>
+    </p><br>
+
+    <h4 class="bs-example"><strong> Stage 2 > Data Review > Target Definition > Good Accounts </strong></h4>
+    <ol>
+        <li> Never delinquent or delinquent to a point where forward roll rate is less than 10% </li>
+        <li> profitable or +ve NPV </li>
+        <li> No claims </li>
+        <li> Never bankrupt </li>
+        <li> No frauds </li>
+    </ol><br>
+
+
+
+    <h4 class="bs-example"><strong> Stage 2 > Data Review > Target Definition > Indeterminates </strong></h4>
+    <ol>
+        <li> Can not be classified as either Good or Bad </li>
+        <li> Insufficient performance history </li>
+        <li> Mild delinquency with roll rates neither low enough to be Good nor High enough to be Bad </li>
+        <li> 30 or 60 DPD accounts that do not roll forward </li>
+        <li> Inactive, voluntarily cancelled, offer declined or applications approved but not booked accounts  </li>
+        <li> Accounts with insufficient usage - for example, accounts with "High Balance" less than $20. </li>
+        <li> Insurance accounts with low claims </li>
+        <li> Accounts with NPV = 0 </li>
+    </ol><br>
+
+
+    <p>
+        <mark>
+            Indeterminates are required when "BAD" definition can be established several ways and usually not required
+            when "BAD" definition is clear cut, e.g. Bankruptcy.
+        </mark>
+    </p><br>
+
+    <p>
+        <mark>
+            Indeterminates should not exceed more than 10% to 15% of portfolio.
+        </mark>
+    </p><br>
+
+    <p>
+        <mark>
+            Only Accounts that are defined as "Good" or "Bad" and rejects are used in actual development of scorecard.
+        </mark>
+    </p><br>
+
+
+
+    <h4 class="bs-example"><strong> Stage 2 > Data Review > Segmentation </strong></h4>
+    <ol>
+        <li> When Portfolio is made of distinct sub populations and one scorecard would not work efficiently for all of them.  </li>
+        <li> Segmentation based on experience and industry knowledge and then validating </li>
+        <li> Segmentation based on statistical techniques such as Clustering & Decision Trees.  </li>
+        <li>
+            different segments should differ on risk-based performance and need to translate into measurable effects on business
+            e.g. lower losses or higher approval rate
+        </li>
+        <li> should take care of future strategies and future target markets </li>
+        <li> each segment should have sufficient volume </li>
+        <li> More segments result in increase of
+            <ul>
+                <li> Development cost </li>
+                <li> Implementation cost </li>
+                <li> Processing cost </li>
+                <li> Strategy Development and Monitoring complexity </li>
+            </ul>
+        </li>
+    </ol><br>
+
+    <p>
+        <mark>
+            Basel II defines segments as "Homogeneous Risk Pools".
+        </mark>
+    </p><br>
+
+
+    <h4 class="bs-example"><strong> Stage 2 > Data Review > Segmentation > Experience-Based (Heuristic) Segmentation </strong></h4>
+    <ol>
+        <li> Segments with Higher Bad Rate  </li>
+        <li> New subproduct </li>
+        <li> Predefined group - Golden group  </li>
+        <li> Future marketing direction </li>
+        <li> Typical Experience based segments :
+            <ul>
+                <li> <strong> Demographics </strong> - Region, Age, Lifestyle, Time at Bureau, MOB </li>
+                <li> <strong> Product type </strong> - Gold / Platinum cards, Mortgage duration, Insurance Type, Secured / Unsecured, Amount of Loan etc. </li>
+                <li> <strong> Channel </strong> - Branch / Internet / Store-front / Dealers / Brokers etc. </li>
+                <li>
+                    <strong> Data Availability </strong> - Thick <mark> vs </mark> Thin (no trades) file,
+                    Clean <mark> vs </mark> Dirty (-ve performance at Bureau), Revolver / Transactor etc.
+                </li>
+                <li> <strong> Applicant Type </strong> -
+                        Existing <mark> vs </mark> New Customer,
+                        First time home buyer <mark> vs </mark> second mortgage,
+                        Profession etc.
+                </li>
+                <li> Product Ownership </li>
+            </ul>
+        </li>
+    </ol><br>
+
+
+
+    <h4 class="bs-example"><strong> Stage 2 > Data Review > Segmentation > Clustering </strong></h4>
+    <ol>
+        <li><code> Using K-Means clustering </code></li>
+        <li>
+            Compare Means / Distribution of variable in cluster to full population <code> normalized mean </code>  to
+            come up with characteristic attributes of a cluster.
+        </li>
+    </ol><br>
+
+
+    <h4 class="bs-example"><strong> Stage 2 > Data Review > Segmentation > Comparison </strong></h4>
+    <ol>
+        <li> Compare KS, C-statistics of generic model overlaid on segment population <mark> vs </mark> segmented model </li>
+        <li>
+            compare bad rate through generic model overlaid on segment population <mark> vs </mark> segmented model by
+            fixing approval rate. Using this, an estimate on reduction in losses in terms of dollar value can be calculated.
+        </li>
+    </ol><br>
+
+
+
+    <h4 class="bs-example"><strong> Stage 2 > Data Review > Methodology </strong></h4>
+    <ol>
+        <li> Data Quality: Decision tree is more appropriate if lot of missing data or
+            non linear relationship between target and characteristics. </li>
+        <li> Type of Target: Continuous or binary. </li>
+        <li> sample size </li>
+        <li> implemenation platform </li>
+        <li> legal and compliance </li>
+    </ol>
+
+
+    <br><h3 class="page-header"> Stage 3 - Details</h3>
+
+
+    <h4 class="bs-example"><strong> Stage 3 > Dev sample Creation > Specification </strong></h4>
+    <ol>
+        <li> No. of scorecards and specification of each segment </li>
+        <li> definition of Bad, Good and Indeterminate </li>
+        <li> portfolio bad rate and approval rate for each segment </li>
+        <li> performance and sample windows </li>
+        <li> definition of exclusions </li>
+        <li> sample size required for each segment </li>
+        <li> detailed list of variables </li>
+        <li> derived variables </li>
+    </ol><br>
+
+
+    <h4 class="bs-example"><strong> Stage 3 > Dev sample Creation > Variable Selection </strong></h4>
+    <ol>
+        <li> Expected predictive power based on experience </li>
+        <li> Reliability and Robustness - e.g. Income, Application form data (optional fields), Occupation data (Interpretation) </li>
+        <li> Human Intervention - e.g. Bankruptcy Indicator where Bankrupt accounts were declined due to policy cuts </li>
+        <li> Legal / Compliance issue on some variables - Marital status, gender etc. </li>
+        <li> Ratios - short term by long terms e.g. Inquiry, purchases, payment, utilization and  balance etc.</li>
+        <li> Future Availability </li>
+        <li> Changes in competitive environment, future direction / strategy  </li>
+    </ol><br>
+
+
+    <p>
+        <mark>
+            An increase in competitive environment will increase the average number of inquiries an applicant has at the bureau.
+        </mark>
+    </p><br>
+
+    <p>
+        <mark>
+            For example, Over 4 inquiries in 12 months might change from high risk to medium risk performance over time and vice versa.
+        </mark>
+    </p><br>
+
+
+    <h4 class="bs-example"><strong> Stage 3 > Dev sample Creation > Sampling </strong></h4>
+    <ol>
+
+    </ol><br>
+
+    <p>
+        <mark>
+            Large enough sample reduces the impact of <code> multicollinearity </code> .
+        </mark>
+    </p><br>
+
+    <p>
+        <mark><code>
+            Sample size calculations?? power test??
+        </code></mark>
+    </p><br>
+
+
+
+    <h4 class="bs-example"><strong> Stage 3 > Dev sample Creation > Data Creation </strong></h4>
+    <ol>
+        <li> Oversampling </li>
+        <li> Randomness check - sample is Representative of segment full population </li>
+        <li> Aware of any data quirks </li>
+    </ol>
+
+
+    <br><h3 class="page-header"> Stage 4 - Details</h3>
+
+
+    <h4 class="bs-example"><strong> Stage 4 > Scorecard Development > Missing Values and Outliers </strong></h4>
+    <ol>
+        <li> Exclude all missing data - will result in very little data to work with </li>
+        <li> Exclude attributes with high (e.g. more than 50%) missing values - particularly if trend is expected to continue in future </li>
+        <li> Treat missing as separate group - impute based on business knowledge or insight into cause for missing value </li>
+        <li> Statistical techniques - based on similar bad rate, Mean, Median or use variable as WOE. </li>
+    </ol><br>
+
+    <p>
+        <mark>
+            "Most frequent" and "mean" value imputation will cause spikes in data and differentiation between
+            accounts with imputed value and actually having that value will be lost.
+        </mark>
+    </p><br>
+
+
+    <h4 class="bs-example"><strong> Stage 4 > Scorecard Development > Clustering </strong></h4>
+    <ol>
+        <li> Proc varclus to reduce number of attributes and remove collinearity </li>
+        <li> Can choose more than 1 variable from each cluster </li>
+        <li> Treat missing as separate group - impute based on business knowledge or insight into cause for missing value </li>
+        <li> Statistical techniques - based on similar bad rate, Mean, Median or use variable as WOE. </li>
+    </ol><br>
+
+
+    <h4 class="bs-example"><strong> Stage 4 > Scorecard Development > WOE Transformation Benefits </strong></h4>
+    <ol>
+        <li> Easier to deal with outliers and missing etc. </li>
+        <li> Easier to understand relationship </li>
+        <li> Nonlinear variables can be used </li>
+        <li> more control over scorecard composition by shaping the groups </li>
+    </ol><br>
+
+
+    <h4 class="bs-example"><strong> Stage 4 > Scorecard Development > Variable Strength </strong></h4>
+    <ol>
+        <li> WOE Trend </li>
+        <li> IV </li>
+        <li> Operational and business considerations </li>
+    </ol><br>
+
+
+    <p>
+        <mark>
+            WOE measures the strength of each attribute in separating good and bad accounts. it is a measure of
+            the difference between proportions of goods and bads and each attribute.
+        </mark>
+    </p><br>
+
+
+    <h4 class="bs-example"><strong> Stage 4 > Scorecard Development > IV </strong></h4>
+    <ol>
+        <li> Less than 0.02 : un-predictive </li>
+        <li> 0.02 to 0.1 : weak </li>
+        <li> 0.1 to 0.3 : medium </li>
+        <li> 0.3 + : strong </li>
+    </ol><br>
+
+</div>
+
+<footer style=" text-align:center; padding-top:40px">
+    <br>
+    <br>
+</footer>
+
+
+
+</body></html>
