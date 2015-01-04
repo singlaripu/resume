@@ -568,8 +568,6 @@
     <ol>
         <li> Proc varclus to reduce number of attributes and remove collinearity </li>
         <li> Can choose more than 1 variable from each cluster </li>
-        <li> Treat missing as separate group - impute based on business knowledge or insight into cause for missing value </li>
-        <li> Statistical techniques - based on similar bad rate, Mean, Median or use variable as WOE. </li>
     </ol><br>
 
 
@@ -579,7 +577,16 @@
         <li> Easier to understand relationship </li>
         <li> Nonlinear variables can be used </li>
         <li> more control over scorecard composition by shaping the groups </li>
+        <li> less over fitting and more elasticity to withstand some population change </li>
+        <li> easier buy-in from business </li>
     </ol><br>
+
+
+    <p>
+        <mark>
+            Over generalization concern of using WOE can be tackled with using more characteristics in the model.
+        </mark>
+    </p><br>
 
 
     <h4 class="bs-example"><strong> Stage 4 > Scorecard Development > Variable Strength </strong></h4>
@@ -597,6 +604,13 @@
         </mark>
     </p><br>
 
+    <p>
+        <mark>
+            During WOE transformation, reversals may be reflecting actual behavior or data and masking them can
+            reduce the overall strength of the attribute.
+        </mark>
+    </p><br>
+
 
     <h4 class="bs-example"><strong> Stage 4 > Scorecard Development > IV </strong></h4>
     <ol>
@@ -605,6 +619,287 @@
         <li> 0.1 to 0.3 : medium </li>
         <li> 0.3 + : strong </li>
     </ol><br>
+
+
+    <h4 class="bs-example"><strong> Stage 4 > Scorecard Development > Preliminary Scorecard </strong></h4>
+    <ol> A Credit card scorecard should have
+        <li> Demographic data: Age, Residential status, region or time of employment </li>
+        <li> Bureau Data: Tenure, inquiries, trades or payment performance etc. </li>
+        <li> debt related variables </li>
+        <li> internal performance data for existing customers </li>
+    </ol><br>
+
+
+    <h4 class="bs-example"><strong> Stage 4 > Scorecard Development > Logistic Regression </strong></h4>
+    <ol>
+        <li> Maximum likelihood is used to estimate parameters (Betas) </li>
+        <li> These parameter estimates measure the rate to change of logit for one unit change in input variable. </li>
+        <li> Example of full risk profile:
+            <ul>
+                <li> Age </li>
+                <li> Residential status </li>
+                <li> Postal code </li>
+                <li> Time in industry </li>
+                <li> Time at address </li>
+                <li> Inquiries 3 months / Inquiries 12 months </li>
+                <li> Inquiries 12 months / Trades opened 12 months </li>
+                <li> Trades 90 days+ as % of total </li>
+                <li> Trades opened last 3 months / Trades opened last 12 months </li>
+                <li> Utilization </li>
+                <li> Number of products at bank </li>
+                <li> Delinquency at bank </li>
+                <li> Total debt service ratio </li>
+            </ul>
+        </li>
+        <li> start from business justified weaker characteristics and iteratively add stronger characteristics. </li>
+    </ol><br>
+
+
+    <h4 class="bs-example"><strong> Stage 4 > Scorecard Development > Reject Inference </strong></h4>
+    <ol>
+        <li> very high or very low confidence in previous approval criterion reduces the need of reject inference. </li>
+        <li> reject inference is more than just an exercise to comply with statistical principles. </li>
+        <li> swapset is the exchange of known bads with inferred goods </li>
+        <li> <strong> Techniques: </strong>
+            <ul>
+                <li> Assign all rejects to BAD - high confidence in current approval process and high approval rate </li>
+                <li> Assign rejects in same proportions of Good to Bad as Accepts - current approval process is random </li>
+                <li> Ignore the Rejects -
+                    <ul>
+                        <li> Score TTD population with current approval scorecard</li>
+                        <li> Score the Accepts with new scorecard and decline accounts below cut off </li>
+                    </ul>
+                </li><br>
+
+                <li> Approve all applications and collect data for a short period of time -
+                    <ul>
+                        <li> can use bad rate to minimize the approvals </li>
+                        <li> Assign lower credit lines to those below cut offs to minimize losses </li>
+                        <li> can collect data over few months to avoid seasonality </li>
+                        <li> may present a challenge with legal and compliance </li>
+                    </ul>
+                </li><br>
+
+                <li> Bureau Data based method
+                    <ul>
+                        <li> Rejects are tagged good or bad based on their performance on a similar product with other
+                            issuer opened in similar time frame.
+                        </li>
+                        <li> may present data collection challenges based on regulations </li>
+                        <li> same definition of good/bad need to be used as Accepts but using different data sources </li>
+                        <li> Applicants declined at one institution or for one product and likely to be declined elsewhere </li>
+                    </ul>
+                </li><br>
+
+                <li> Based on Characteristics - Clustering
+                    <ul>
+                        <li> Make clusters of TTD population with bureau data </li>
+                        <li> Assign same odds as Accepts in a cluster to Rejects </li>
+                    </ul>
+                </li><br>
+
+
+                <li> Simple Augmentation
+                    <ul>
+                        <li> Score Rejects using Good/Bad model built on Accepts and get expected bad rate, p(bad) </li>
+                        <li> select a cutoff (based on bad rate / prob on Accepts) and label Rejects as Good/Bad </li>
+                        <li> this method does not take into account the prob of Rejects being approved </li>
+                    </ul>
+                </li><br>
+
+
+                <li> Augmentation 2
+                    <ul>
+                        <li> Develop an Accept / Reject model </li>
+                        <li> Assign p(Accept) to Accepts data as weights </li>
+                        <li> Build a Good / Bad model on Accepts with weights and then follow same steps as simple augmentation </li>
+                    </ul>
+                </li><br>
+
+
+                <li> Parceling
+                    <ul>
+                        <li> Score Rejects using Good/Bad model built on Accepts </li>
+                        <li> Assign same proportion of good/bad as Accepts in same score bands </li>
+                        <li> Assignment of good/bad classes can be random </li>
+                        <li> since proportion of good/bad in Rejects should be higher than that of Accepts, a factor
+                        can be used </li>
+                    </ul>
+                </li><br>
+
+                <li> Fuzzy Augmentation
+                    <ul>
+                        <li> Score Rejects using Good/Bad model built on Accepts </li>
+                        <li> duplicate Reject accounts with weight p(bad) and weight p(good) </li>
+                        <li> Develop an Accept / Reject model </li>
+                        <li> Assign further weight p(accept) to each observation in duplicated dataset in point 2 </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ol><br>
+
+    <p>
+        <mark>
+            If the previous credit granting was good and the approval rate was also high then inferred rejects should
+            have a bad rate of atleast 3 or 4 times that of approves.
+        </mark>
+    </p><br>
+
+    <p>
+        <mark>
+            A medium approval rate may yield an inferred bad rate of only twice that of approves.
+        </mark>
+    </p><br>
+
+
+    <h4 class="bs-example"><strong> Stage 4 > Scorecard Development > Final Scorecard </strong></h4>
+    <ol>
+        <li> Using "All Good Bad data", rebuild the score card </li>
+        <li> should not limit to variables selected in preliminary phase. </li>
+        <li> In ideal case, all the analysis done in preliminary scorecard phase need to be repeated </li>
+    </ol><br>
+
+
+    <h4 class="bs-example"><strong> Stage 4 > Scorecard Development > Scaling </strong></h4>
+    <ol>
+        <li> Score = Offset + Factor * ln(odds) </li>
+        <li> score + pdo = offset + factor * ln(2*odds) </li>
+        <li> factor = pdo / ln(2) </li>
+        <li> offset = score - {factor * ln(odds) </li>
+        <li> suppose a scorecard was being scaled so as to have odds of 50:1 at 600 points and odds to double every 20 points,
+        we can calculate offset and factor using above equations. </li>
+    </ol><br>
+
+
+    <h4 class="bs-example"><strong> Stage 4 > Scorecard Development > Confusion Matrix </strong></h4>
+    <table class="table table-bordered table-condensed text-center">
+        <tr>
+            <td>  </td>
+            <td colspan = "2"><strong> Predicted </strong></td>
+        </tr>
+        <tr>
+            <td><strong> Actual </strong></td>
+            <td><code> Good </code></td>
+            <td><code> Bad </code></td>
+        </tr>
+        <tr>
+            <td><code> Good </code></td>
+            <td> True Positive (Acceptance of goods) </td>
+            <td> False Negative (Decline goods) </td>
+        </tr>
+        <tr>
+            <td><code> Bad </code></td>
+            <td> False Positive (Acceptance of bads) </td>
+            <td> True Negative (Decline bads) </td>
+        </tr>
+    </table>
+
+    <ol>
+        <li> Accuracy: (true positives and negatives) / (total cases) </li>
+        <li> Error rate: (false positives and negatives) / (total cases) </li>
+        <li> Sensitivity: (true positives) / (total actual positives) </li>
+        <li> Specificity: (true negatives) / (total actual negatives) </li>
+    </ol><br>
+
+
+    <p>
+        <mark>
+            if objective is to reduce losses
+            <icon class="glyphicon glyphicon-arrow-right"></icon>
+            choose scorecard with maximum specificity
+        </mark>
+    </p><br>
+
+    <p>
+        <mark>
+            if objective is to increase market share
+            <icon class="glyphicon glyphicon-arrow-right"></icon>
+            choose scorecard with maximum sensitivity
+        </mark>
+    </p><br>
+
+
+    <h4 class="bs-example"><strong> Stage 4 > Scorecard Development > Akaike Information Criterion </strong></h4>
+    <ol>
+        <li> AIC = N * ln(SSerror/N) + 2K where K = #parameters + 1 </li>
+        <li> Model with lower AIC has better fit. </li>
+    </ol><br>
+
+
+    <table class="table table-bordered table-condensed text-center">
+        <tr>
+            <td>  </td>
+            <td><strong> N </strong></td>
+            <td><strong> K </strong></td>
+            <td><strong> SS error </strong></td>
+            <td><strong> AIC </strong></td>
+        </tr>
+        <tr>
+            <td> Linear </td>
+            <td> 20 </td>
+            <td> 3 </td>
+            <td> 122 </td>
+            <td><code> 156.17  </code></td>
+        </tr>
+        <tr>
+            <td> Polynomial </td>
+            <td> 20 </td>
+            <td> 4 </td>
+            <td> 89 </td>
+            <td><code> 189.86 </code></td>
+        </tr>
+    </table>
+
+
+    <p>
+        <mark>
+            Sensitivity
+            <icon class="glyphicon glyphicon-arrow-right"></icon>
+            cummulative % Good capture
+        </mark>
+    </p><br>
+
+    <p>
+        <mark>
+            Specificity
+            <icon class="glyphicon glyphicon-arrow-right"></icon>
+            cummulative % Bad capture
+        </mark>
+    </p><br>
+
+    <p>
+        <mark>
+            AUC
+            <icon class="glyphicon glyphicon-arrow-right"></icon>
+            Area under ROC Curve (sensitivity on y-axis vs specificity on x-axis) = c-statistic
+        </mark>
+    </p><br>
+
+    <p>
+        <mark>
+            Gini (measure of inequality, Gini = 0 means perfect equality)
+            <icon class="glyphicon glyphicon-arrow-right"></icon>
+            2 * AUC (Lorenz curve) - 1 (equals double the area of half moon)
+        </mark>
+    </p><br>
+
+
+    <h4 class="bs-example"><strong> Stage 4 > Scorecard Development > Comparing Scorecards </strong></h4>
+    <ol>
+        <li> Model with better KS at the approval rate or bad rate cut-off is better </li>
+        <li> In general, performance with respect to any metric should be compared at approval rate / bad rate cutoff </li>
+        <li> though for bankruptcy / response models, it makes sense to look at lowest decile since the objective
+            is to isolate worst/best few performers for action. </li>
+    </ol><br>
+
+    <p>
+        <mark>
+            Expected loss = EAD x PD x LGD
+        </mark>
+    </p><br>
+
+
 
 </div>
 
